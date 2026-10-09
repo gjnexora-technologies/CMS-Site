@@ -1,0 +1,13 @@
+{
+  "name": "nexora-website-system",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Nexora Admin Panel and website",
+  "scripts": {
+    "dev:admin": "npm run dev --prefix admin-panel",
+    "dev:user": "npm run dev --prefix user-website",
+    "build:admin": "npm run build --prefix admin-panel",
+    "build:user": "npm run build --prefix user-website",
+    "build": "npm run build:admin && npm run build:user"
+  }
+}
