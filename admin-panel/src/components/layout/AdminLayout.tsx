@@ -17,9 +17,10 @@ import {
   CheckCircle,
   AlertCircle,
   RefreshCw,
+  LogOut,
 } from 'lucide-react';
 import { api } from '../../services/api';
-import { isSupabaseConfigured } from '../../lib/supabase';
+import { isSupabaseConfigured, supabase } from '../../lib/supabase';
 import { SiteSettings } from '../../types';
 
 interface AdminLayoutProps {
@@ -33,6 +34,19 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({ children }) => {
   const [settings, setSettings] = useState<SiteSettings | null>(null);
   const [inquiryCount, setInquiryCount] = useState(0);
   const [toast, setToast] = useState<{ message: string; type: 'success' | 'error' } | null>(null);
+
+  const signOut = async () => {
+    sessionStorage.removeItem('apg-admin-code-verified');
+    if (isSupabaseConfigured && supabase) {
+      const { error } = await supabase.auth.signOut();
+      if (error) {
+        console.error('Unable to sign out of Supabase Auth:', error);
+        showToast('Unable to sign out. Please try again.', 'error');
+        return;
+      }
+    }
+    navigate('/login', { replace: true });
+  };
 
   useEffect(() => {
     const loadInit = async () => {
@@ -149,10 +163,15 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({ children }) => {
             <ExternalLink className="w-3.5 h-3.5" />
           </a>
 
-          {/* ADMIN AVATAR */}
-          <div className="w-8 h-8 rounded-full bg-slate-100 border border-slate-300 flex items-center justify-center text-xs font-bold text-slate-700">
-            AD
-          </div>
+          <button
+            type="button"
+            onClick={signOut}
+            className="inline-flex items-center gap-2 rounded-lg border border-slate-200 bg-white px-3 py-2 text-xs font-semibold text-slate-600 hover:bg-slate-100 hover:text-slate-900"
+            aria-label="Sign out of admin panel"
+          >
+            <LogOut className="h-4 w-4" />
+            <span className="hidden sm:inline">Sign out</span>
+          </button>
         </div>
       </header>
 

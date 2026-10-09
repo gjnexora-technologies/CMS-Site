@@ -80,6 +80,14 @@ VITE_SUPABASE_URL=https://your-project.supabase.co
 VITE_SUPABASE_ANON_KEY=your-anon-key
 ```
 
+For admin sign-in, create the admin account in Supabase Authentication, then add
+the `ADMIN_ACCESS_CODE` secret in your Supabase project's Edge Function secrets
+and deploy the `admin-login` function. Sign-in requires the account's email and
+password through Supabase Auth, followed by the access code. Supabase Auth
+handles passwords; this app does not store them as readable text. Keep the
+access code private and do not add it to the app's `.env` files or source
+control.
+
 The schema seeds starter sections for pages that have no sections. If the pages
 list is populated but the public site and page builder have no content, run
 `supabase/schema.sql` again in the Supabase SQL Editor. The section seed won't
