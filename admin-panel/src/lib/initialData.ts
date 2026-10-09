@@ -18,7 +18,7 @@ export const INITIAL_SETTINGS: SiteSettings = {
     site_title: `${school} | Learn, Grow, Shine`,
     site_description: 'A welcoming learning community in Ganapathy, Coimbatore, helping every student build knowledge, confidence and character.',
     logo_url: '',
-    favicon_url: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"%3E%3Crect width="64" height="64" rx="16" fill="%231e5631"/%3E%3Cpath d="M14 25 32 14l18 11v24H14z" fill="%23fff"/%3E%3Cpath d="M25 49V34h14v15M20 28h24" stroke="%23d59c37" stroke-width="4" fill="none"/%3E%3C/svg%3E',
+    favicon_url: '/gj-logo.ico',
     website_url: '', contact_email: '', phone_number: '', address: campus,
   },
   branding: { primary_color: '#1e5631', secondary_color: '#16432a', accent_color: '#d59c37', font_family: 'Plus Jakarta Sans', border_radius: 'lg', dark_mode_enabled: false },
